@@ -3,6 +3,8 @@ StreamDeck Client for Windows 7
 
 Based on the great job of [AutoHotkey.Interop](https://github.com/amazing-andrew/AutoHotkey.Interop) and [StreamDeckSharp](https://github.com/OpenStreamDeck/StreamDeckSharp).
 
+The is not a offical project, and also not related to Elgato Systems GmbH in any way.
+
 ## Features
 Trigger AHK command or script by StreamDeck Buttons, so you can send key combination or start a exe process, etc.
 
