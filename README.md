@@ -3,7 +3,7 @@ StreamDeck Client for Windows 7
 
 Based on the great job of [AutoHotkey.Interop](https://github.com/amazing-andrew/AutoHotkey.Interop) and [StreamDeckSharp](https://github.com/OpenStreamDeck/StreamDeckSharp).
 
-##Features
+## Features
 Trigger AHK command or script by StreamDeck Buttons.
 
 Support multi button pages and page navigation
