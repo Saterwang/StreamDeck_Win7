@@ -15,3 +15,6 @@ Support button drag and drop
 Support config save and load
 
 Support auto start when windows login
+
+## Releases
+Binary Release V1.0 [Download](https://github.com/Saterwang/StreamDeck_Win7/releases)
