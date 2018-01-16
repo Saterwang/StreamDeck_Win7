@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="SDC.BtnPropertyPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SDC"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
+    
+    
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        
+        
+        <TextBlock Text="Button Property" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="DarkGray">
+
+        </TextBlock>
+
+        
+        <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+            <StackPanel FlowDirection="LeftToRight" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,5,0,0">
+                <local:ImgBtn x:Name="btn_curr1" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Width="72" Height="72"/>
+                <!--<local:ImgBtn x:Name="btn_curr2"  Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="72" Height="72"/>-->
+                <Border BorderBrush="White"/>
+            </StackPanel>
+
+            <ComboBox x:Name="FuncSelect" Width="130" Height="25" HorizontalAlignment="Center" Margin="0,50,0,0" SelectionChanged="FuncSelect_SelectionChanged" SelectedValue="{Binding Path=FuncType, Mode=TwoWay}" />
+            
+            <Button x:Name="btn_MainMenu" Initialized="btn_MainMenu_Initialized" Click="btn_MainMenu_Click" Width="130" Height="25" HorizontalAlignment="Center" Margin="0,140,0,0"  >
+                MainMenu
+                <Button.ContextMenu>
+                    <ContextMenu Name="contextMenu">
+                        <MenuItem Header="Save" Name="savePage" Click="savePage_Click"/>
+                        <MenuItem Header="SaveAs..." Name="saveAsPage" Click="saveAsPage_Click"/>
+                        <MenuItem Header="Load..." Name="loadPage" Click="loadPage_Click"/>
+                        <MenuItem Header="ClearAll" Name="clearPage" Click="clearPage_Click"/>
+                        <MenuItem Header="AutoStart" Name="autoStart" IsCheckable="True" Checked="autoStart_Checked" Unchecked="autoStart_Unchecked"/>
+                    </ContextMenu>
+                </Button.ContextMenu>
+                
+            </Button>
+        </Grid>
+
+        <Border BorderBrush="White" BorderThickness="1,0,0,0"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <Grid x:Name="ConfPanel"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,0,0,0" />
+        </Border>
+    </Grid>
+    
+</UserControl>

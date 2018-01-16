@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="SDC.ImgBtn"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SDC"
+             mc:Ignorable="d" 
+             d:DesignHeight="72" d:DesignWidth="72" MaxHeight="72" MaxWidth="72" Loaded="UserControl_Loaded" PreviewMouseLeftButtonDown="UserControl_PreviewMouseLeftButtonDown" MouseMove="UserControl_MouseMove" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp" LayoutUpdated="UserControl_LayoutUpdated">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <local:MarginConverter x:Key="MarginConv" />
+        <local:AlignmentConverter x:Key="AligConv" />
+    </UserControl.Resources>
+    <Grid x:Name="OuterGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+        <Border x:Name="brdSelect" BorderThickness="3" BorderBrush="Aqua" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="12" Visibility="Hidden"  >
+            <Border.Effect>
+                <DropShadowEffect  ShadowDepth="0" Color="Aqua" Opacity="10" BlurRadius="15" />
+            </Border.Effect>
+        </Border>
+
+        <Border x:Name="CoreBorder" BorderThickness="1" BorderBrush="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="12" ClipToBounds="True" >
+
+            <Grid x:Name="CoreGrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AllowDrop="True" Drop="ImageBlock_Drop" Background="Transparent">
+                <Grid.Clip>
+                    <RectangleGeometry Rect="0,0,72,72" RadiusX="12" RadiusY="12" />
+                </Grid.Clip>
+
+                <Image x:Name="ImageBlock" AllowDrop="True" Drop="ImageBlock_Drop" Stretch="UniformToFill" StretchDirection="DownOnly" Source="{Binding Image}"/>
+
+                <TextBlock x:Name="ImgText" Text="{Binding ButtonText}" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="{Binding Path=ButtonTextPosition, Converter={StaticResource AligConv}}" TextAlignment="Center" Foreground="White" Visibility="{Binding Path=ShowText, Mode=TwoWay, Converter={StaticResource BoolToVis}}">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="2" Direction="330" Color="Black" Opacity="0.7" BlurRadius="3"/>
+                    </TextBlock.Effect>
+                    <TextBlock.Margin>
+                        <MultiBinding Converter="{StaticResource MarginConv}">
+                            <Binding Path="ButtonTextPosition" />
+                            <Binding Path="TextTopMargin" />
+                        </MultiBinding>
+                    </TextBlock.Margin>
+                </TextBlock>
+            </Grid>
+
+        </Border>
+
+    </Grid>
+</UserControl>

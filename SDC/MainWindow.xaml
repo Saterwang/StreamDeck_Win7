@@ -1,0 +1,57 @@
+﻿<Window x:Class="SDC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SDC"
+        mc:Ignorable="d"
+        Background="Black"
+        Icon="SysIcon.ico"
+        Title="Stream Deck Client" Height="600" Width="700" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition  />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="200" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Stream Deck Client" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Foreground="White" />
+
+        <!-- Tree View -->
+        <Grid Grid.Row="1" Grid.Column="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+
+            <TreeView x:Name="PageTree" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Black" Foreground="White" SelectedItemChanged="PageTree_SelectedItemChanged">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type local:PageData}" ItemsSource="{Binding SubPages}" >
+                        <TextBlock Text="{Binding PageName}" Foreground="White"/>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+
+            <Border BorderBrush="White" BorderThickness="1" Grid.Row="1"/>
+
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Button x:Name="btnAdd" Click="btnAdd_Click" Width="26" Margin="3,0,3,0">Add</Button>
+                <Button x:Name="btnDel" Click="btnDel_Click"  Width="26" Margin="3,0,3,0">Del</Button>
+            </WrapPanel>
+        </Grid>
+
+        <Border BorderThickness="1" BorderBrush="White" Grid.Row="1" Grid.Column="1" />
+        
+        <!-- 按钮区域 -->
+        <Grid x:Name="GridButtons" Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <local:ButtonMatrix x:Name="btnMartix" />
+        </Grid>
+
+        <!-- 底部属性栏 -->
+        <local:BtnPropertyPanel x:Name="BtnPropPanel" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" DataContext="{Binding ElementName=btnMartix, Path=SelectedButtonData}"/>
+    </Grid>
+</Window>
