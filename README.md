@@ -20,4 +20,5 @@ Support auto start when windows login
 
 ## Releases
 Binary Release V1.0 [Download](https://github.com/Saterwang/StreamDeck_Win7/releases/)
+
 Binary Release V2.0 [Download](https://github.com/Saterwang/StreamDeck_Win7/releases/tag/2.0)
