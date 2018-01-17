@@ -12,6 +12,7 @@
         <local:MarginConverter x:Key="MarginConv" />
         <local:AlignmentConverter x:Key="AligConv" />
         <local:ColorToSolidColorBrushValueConverter x:Key="ColorConv" />
+        <local:FontFamilyToStrConverter x:Key="FontConv" />
     </UserControl.Resources>
     <Grid x:Name="OuterGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
@@ -35,7 +36,7 @@
                            TextAlignment="Center" Visibility="{Binding Path=ShowText, Mode=TwoWay, Converter={StaticResource BoolToVis}}" 
                            Foreground="{Binding Path=FontColor, Converter={StaticResource ColorConv}}"
                            FontSize="{Binding Path=FontSize}" 
-                           FontFamily="{Binding Path=FontFamily}"
+                           FontFamily="{Binding Path=FontFamilyStr, Converter={StaticResource FontConv}}"
                            >
 
                     <TextBlock.Effect>

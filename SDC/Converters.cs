@@ -67,26 +67,36 @@ namespace SDC
         }
     }
 
-    public class ObjToStrConverter : IValueConverter
+    public class FontFamilyToStrConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (null == value)
             {
                 return String.Empty;
             }
 
-            if(value is String)
+            if(value is System.Windows.Media.FontFamily)
             {
-                return (string)value;
+                return (string)(value as System.Windows.Media.FontFamily).ToString();
             }
 
             return String.Empty;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value;
+            if (null == value)
+            {
+                return new System.Windows.Media.FontFamily("Arial");
+            }
+
+            if (value is String)
+            {
+                return new System.Windows.Media.FontFamily(value as string);
+            }
+
+            return null;
         }
     }
     public class ColorToSolidColorBrushValueConverter : IValueConverter

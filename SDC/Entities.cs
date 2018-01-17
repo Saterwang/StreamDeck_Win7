@@ -97,17 +97,17 @@ namespace SDC
 
         public byte[] ImageBuffer { get; set; }
 
-        private System.Windows.Media.FontFamily m_FontFamily;
-        public System.Windows.Media.FontFamily FontFamily
+        private String m_FontFamilyStr;
+        public String FontFamilyStr
         {
             get
             {
-                return m_FontFamily;
+                return m_FontFamilyStr;
             }
             set
             {
-                m_FontFamily = value;
-                NotifyPropertyChange("FontFamily");
+                m_FontFamilyStr = value;
+                NotifyPropertyChange("FontFamilyStr");
             }
         }
 
@@ -125,16 +125,19 @@ namespace SDC
             }
         }
 
-        private System.Windows.Media.Color m_FontColor;
+        private String m_FontColor;
+
+        [field: NonSerialized]
         public System.Windows.Media.Color FontColor
         {
             get
             {
-                return m_FontColor;
+                //return System.Windows.Media.Color.from;
+                return (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(m_FontColor);
             }
             set
             {
-                m_FontColor = value;
+                m_FontColor = value.ToString();
                 NotifyPropertyChange("FontColor");
             }
         }
@@ -284,7 +287,7 @@ namespace SDC
             ImageBuffer = null;
             Image = null;
 
-            FontFamily = new System.Windows.Media.FontFamily("Arial");
+            FontFamilyStr = "Arial";
             FontSize = 12;
             FontColor = System.Windows.Media.Color.FromRgb(255,255,255);
         }

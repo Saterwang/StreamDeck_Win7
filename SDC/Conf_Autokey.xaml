@@ -10,6 +10,7 @@
              d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <local:StringToIntConverter x:Key="StrToIntConv" />
+        <local:FontFamilyToStrConverter x:Key="FontConv" />
 
         <CollectionViewSource x:Key="SortedFontsCollection" Source="{Binding Source={x:Static Fonts.SystemFontFamilies}}" >
             <CollectionViewSource.SortDescriptions>
@@ -36,7 +37,7 @@
 
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
             <Label Foreground="White" Margin="0,0,0,0" >Font</Label>
-            <ComboBox x:Name="comboBoxFonts" Width="163"  ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}" SelectedValue="{Binding Path=FontFamily, Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" />
+            <ComboBox x:Name="comboBoxFonts" Width="163"  ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}" SelectedValue="{Binding Path=FontFamilyStr, Mode=TwoWay, Converter={StaticResource FontConv}}" IsSynchronizedWithCurrentItem="True" />
             
             <Label Foreground="White" Margin="5,0,0,0" >Size</Label>
             <TextBox x:Name="fontSize" Width="45" Margin="0,0,0,0" Text="{Binding Path=FontSize, Mode=TwoWay, Converter={StaticResource StrToIntConv}, UpdateSourceTrigger=PropertyChanged}" />
