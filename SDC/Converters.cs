@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace SDC
 {
@@ -66,6 +67,59 @@ namespace SDC
         }
     }
 
+    public class ObjToStrConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (null == value)
+            {
+                return String.Empty;
+            }
+
+            if(value is String)
+            {
+                return (string)value;
+            }
+
+            return String.Empty;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
+    public class ColorToSolidColorBrushValueConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (null == value)
+            {
+                return null;
+            }
+            // For a more sophisticated converter, check also the targetType and react accordingly..
+            if (value is Color)
+            {
+                Color c = (Color)value;
+                //Color color = Color.FromArgb(c.A, c.R, c.G, c.B);
+                return new SolidColorBrush(c);
+            }
+            // You can support here more source types if you wish
+            // For the example I throw an exception
+
+            Type type = value.GetType();
+            throw new InvalidOperationException("Unsupported type [" + type.Name + "]");
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            // If necessary, here you can convert back. Check if which brush it is (if its one),
+            // get its Color-value and return it.
+
+            throw new NotImplementedException();
+        }
+    }
     public class StringToIntConverter:IValueConverter
     {
         public int EmptyStringValue { get; set; }

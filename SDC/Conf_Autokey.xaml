@@ -4,26 +4,45 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SDC"          
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <local:StringToIntConverter x:Key="StrToIntConv" />
+
+        <CollectionViewSource x:Key="SortedFontsCollection" Source="{Binding Source={x:Static Fonts.SystemFontFamilies}}" >
+            <CollectionViewSource.SortDescriptions>
+                <ComponentModel:SortDescription PropertyName="Source" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
     </UserControl.Resources>
     <StackPanel Margin="5" HorizontalAlignment="Left" >
         
         <TextBlock Foreground="White">AHK Command</TextBlock>
-        <TextBox x:Name="textCmd" Width="350" HorizontalAlignment="Left" Text="{Binding Path=AHDCmd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox x:Name="textCmd" Width="470" HorizontalAlignment="Left" Text="{Binding Path=AHDCmd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
         <TextBlock  Foreground="White">Text</TextBlock>
 
-        <TextBox x:Name="btnText" Width="350" HorizontalAlignment="Left" Text="{Binding Path=ButtonText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox x:Name="btnText" Width="470" HorizontalAlignment="Left" Text="{Binding Path=ButtonText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
             <CheckBox x:Name="isShowText"  Foreground="White" Margin="0,3,0,0" IsChecked="{Binding Path=ShowText, Mode=TwoWay}">Show</CheckBox>
-            <ComboBox x:Name="posMode" Width="100" Margin="20,0,0,0" SelectionChanged="posMode_SelectionChanged" SelectedValue="{Binding Path=ButtonTextPosition, Mode=TwoWay}" />
-            <Label Foreground="White">Top Margin</Label>
-            <TextBox x:Name="topMargin" Width="100" PreviewTextInput="NumberValidationTextBox" Text="{Binding Path=TextTopMargin, Mode=TwoWay, Converter={StaticResource StrToIntConv}, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBox x:Name="posMode" Width="130" Margin="20,0,0,0" SelectionChanged="posMode_SelectionChanged" SelectedValue="{Binding Path=ButtonTextPosition, Mode=TwoWay}" />
+            <Label Foreground="White" Margin="5,0,0,0">Top Margin</Label>
+            <TextBox x:Name="topMargin" Width="190" PreviewTextInput="NumberValidationTextBox" Text="{Binding Path=TextTopMargin, Mode=TwoWay, Converter={StaticResource StrToIntConv}, UpdateSourceTrigger=PropertyChanged}">
             </TextBox>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <Label Foreground="White" Margin="0,0,0,0" >Font</Label>
+            <ComboBox x:Name="comboBoxFonts" Width="163"  ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}" SelectedValue="{Binding Path=FontFamily, Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" />
+            
+            <Label Foreground="White" Margin="5,0,0,0" >Size</Label>
+            <TextBox x:Name="fontSize" Width="45" Margin="0,0,0,0" Text="{Binding Path=FontSize, Mode=TwoWay, Converter={StaticResource StrToIntConv}, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label Foreground="White" Margin="5,0,0,0" >Color</Label>
+            <xctk:ColorPicker Name="ClrPcker_Background" Width="140" Margin="0" SelectedColor="{Binding Path=FontColor, Mode=TwoWay}"></xctk:ColorPicker>
         </StackPanel>
 
     </StackPanel>

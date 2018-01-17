@@ -11,6 +11,7 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <local:MarginConverter x:Key="MarginConv" />
         <local:AlignmentConverter x:Key="AligConv" />
+        <local:ColorToSolidColorBrushValueConverter x:Key="ColorConv" />
     </UserControl.Resources>
     <Grid x:Name="OuterGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
@@ -29,7 +30,14 @@
 
                 <Image x:Name="ImageBlock" AllowDrop="True" Drop="ImageBlock_Drop" Stretch="UniformToFill" StretchDirection="DownOnly" Source="{Binding Image}"/>
 
-                <TextBlock x:Name="ImgText" Text="{Binding ButtonText}" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="{Binding Path=ButtonTextPosition, Converter={StaticResource AligConv}}" TextAlignment="Center" Foreground="White" Visibility="{Binding Path=ShowText, Mode=TwoWay, Converter={StaticResource BoolToVis}}">
+                <TextBlock x:Name="ImgText" Text="{Binding ButtonText}" TextWrapping="Wrap" HorizontalAlignment="Stretch" 
+                           VerticalAlignment="{Binding Path=ButtonTextPosition, Converter={StaticResource AligConv}}" 
+                           TextAlignment="Center" Visibility="{Binding Path=ShowText, Mode=TwoWay, Converter={StaticResource BoolToVis}}" 
+                           Foreground="{Binding Path=FontColor, Converter={StaticResource ColorConv}}"
+                           FontSize="{Binding Path=FontSize}" 
+                           FontFamily="{Binding Path=FontFamily}"
+                           >
+
                     <TextBlock.Effect>
                         <DropShadowEffect ShadowDepth="2" Direction="330" Color="Black" Opacity="0.7" BlurRadius="3"/>
                     </TextBlock.Effect>

@@ -39,8 +39,9 @@
             <Border BorderBrush="White" BorderThickness="1" Grid.Row="1"/>
 
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                <Button x:Name="btnAdd" Click="btnAdd_Click" Width="26" Margin="3,0,3,0">Add</Button>
-                <Button x:Name="btnDel" Click="btnDel_Click"  Width="26" Margin="3,0,3,0">Del</Button>
+                <Button x:Name="btnAdd" Click="btnAdd_Click" Width="35" Margin="3,0,3,0">Add</Button>
+                <Button x:Name="btnDel" Click="btnDel_Click"  Width="35" Margin="3,0,3,0">Del</Button>
+                <Button x:Name="btnRename" Click="btnRename_Click"  Width="60" Margin="3,0,3,0">Rename</Button>
             </WrapPanel>
         </Grid>
 

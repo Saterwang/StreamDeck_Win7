@@ -212,5 +212,16 @@ namespace SDC
             Business.GetInstance().Deck.ClearKeys();
             Business.GetInstance().Deck.ShowLogo();
         }
+
+        private void btnRename_Click(object sender, RoutedEventArgs e)
+        {
+            PageData currPage = PageTree.SelectedItem as PageData;
+            string pName = Interaction.InputBox("Please Enter Page Name", "Rename", currPage.PageName);
+            if (pName == "" || pName == string.Empty)
+            {
+                return;
+            }
+            currPage.PageName = pName;
+        }
     }
 }

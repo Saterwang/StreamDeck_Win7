@@ -18,9 +18,20 @@ namespace SDC
     /// 按钮页面定义
     /// </summary>
     [Serializable]
-    public class PageData
+    public class PageData : INotifyPropertyChanged
     {
         public ButtonData[] m_BtnList = new ButtonData[15];
+
+        [field: NonSerialized]
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChange(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
         public ButtonData[] BtnList
         {
             get { return m_BtnList; }
@@ -31,7 +42,19 @@ namespace SDC
 
         public PageData ParentPageData { get; set; }
 
-        public string PageName { get; set; }
+        private string m_PageName;
+        public string PageName
+        {
+            get
+            {
+                return m_PageName;
+            }
+            set
+            {
+                m_PageName = value;
+                NotifyPropertyChange("Pagename");
+            }
+        }
 
         public Guid PageKey {get; set;}
 
@@ -73,6 +96,48 @@ namespace SDC
         }
 
         public byte[] ImageBuffer { get; set; }
+
+        private System.Windows.Media.FontFamily m_FontFamily;
+        public System.Windows.Media.FontFamily FontFamily
+        {
+            get
+            {
+                return m_FontFamily;
+            }
+            set
+            {
+                m_FontFamily = value;
+                NotifyPropertyChange("FontFamily");
+            }
+        }
+
+        private int m_FontSize;
+        public int FontSize
+        {
+            get
+            {
+                return m_FontSize;
+            }
+            set
+            {
+                m_FontSize = value;
+                NotifyPropertyChange("FontSize");
+            }
+        }
+
+        private System.Windows.Media.Color m_FontColor;
+        public System.Windows.Media.Color FontColor
+        {
+            get
+            {
+                return m_FontColor;
+            }
+            set
+            {
+                m_FontColor = value;
+                NotifyPropertyChange("FontColor");
+            }
+        }
 
         // Common
         private ButtonType m_FuncType;
@@ -218,6 +283,10 @@ namespace SDC
             ButtonBitmapBuf_DOWN = null;
             ImageBuffer = null;
             Image = null;
+
+            FontFamily = new System.Windows.Media.FontFamily("Arial");
+            FontSize = 12;
+            FontColor = System.Windows.Media.Color.FromRgb(255,255,255);
         }
 
     }

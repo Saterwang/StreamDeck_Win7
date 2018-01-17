@@ -126,11 +126,8 @@ namespace SDC
                 }
             
             }
-
-                // 其它按钮：交换
-
                 // 快捷方式
-            }
+        }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
