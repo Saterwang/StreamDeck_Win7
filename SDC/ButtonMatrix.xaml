@@ -22,20 +22,20 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <local:ImgBtn x:Name="btn1" Grid.Row="0" Grid.Column="4" Margin="5" />
-        <local:ImgBtn x:Name="btn2" Grid.Row="0" Grid.Column="3" Margin="5" />
-        <local:ImgBtn x:Name="btn3" Grid.Row="0" Grid.Column="2" Margin="5" />
-        <local:ImgBtn x:Name="btn4" Grid.Row="0" Grid.Column="1" Margin="5" />
-        <local:ImgBtn x:Name="btn5" Grid.Row="0" Grid.Column="0" Margin="5" />
-        <local:ImgBtn x:Name="btn6" Grid.Row="1" Grid.Column="4" Margin="5" />
-        <local:ImgBtn x:Name="btn7" Grid.Row="1" Grid.Column="3" Margin="5" />
-        <local:ImgBtn x:Name="btn8" Grid.Row="1" Grid.Column="2" Margin="5" />
-        <local:ImgBtn x:Name="btn9" Grid.Row="1" Grid.Column="1" Margin="5" />
-        <local:ImgBtn x:Name="btn10" Grid.Row="1" Grid.Column="0" Margin="5" />
-        <local:ImgBtn x:Name="btn11" Grid.Row="2" Grid.Column="4" Margin="5" />
-        <local:ImgBtn x:Name="btn12" Grid.Row="2" Grid.Column="3" Margin="5" />
-        <local:ImgBtn x:Name="btn13" Grid.Row="2" Grid.Column="2" Margin="5" />
-        <local:ImgBtn x:Name="btn14" Grid.Row="2" Grid.Column="1" Margin="5" />
-        <local:ImgBtn x:Name="btn15" Grid.Row="2" Grid.Column="0" Margin="5" />
+        <local:ImgBtn x:Name="btn1" Grid.Row="0" Grid.Column="4" Margin="5" Width="72" Height="72" />
+        <local:ImgBtn x:Name="btn2" Grid.Row="0" Grid.Column="3" Margin="5" Width="72" Height="72" />
+        <local:ImgBtn x:Name="btn3" Grid.Row="0" Grid.Column="2" Margin="5" Width="72" Height="72" />
+        <local:ImgBtn x:Name="btn4" Grid.Row="0" Grid.Column="1" Margin="5" Width="72" Height="72" />
+        <local:ImgBtn x:Name="btn5" Grid.Row="0" Grid.Column="0" Margin="5" Width="72" Height="72" />
+        <local:ImgBtn x:Name="btn6" Grid.Row="1" Grid.Column="4" Margin="5" Width="72" Height="72" />
+        <local:ImgBtn x:Name="btn7" Grid.Row="1" Grid.Column="3" Margin="5" Width="72" Height="72" />
+        <local:ImgBtn x:Name="btn8" Grid.Row="1" Grid.Column="2" Margin="5" Width="72" Height="72" />
+        <local:ImgBtn x:Name="btn9" Grid.Row="1" Grid.Column="1" Margin="5" Width="72" Height="72" />
+        <local:ImgBtn x:Name="btn10" Grid.Row="1" Grid.Column="0" Margin="5" Width="72" Height="72" />
+        <local:ImgBtn x:Name="btn11" Grid.Row="2" Grid.Column="4" Margin="5" Width="72" Height="72" />
+        <local:ImgBtn x:Name="btn12" Grid.Row="2" Grid.Column="3" Margin="5" Width="72" Height="72" />
+        <local:ImgBtn x:Name="btn13" Grid.Row="2" Grid.Column="2" Margin="5" Width="72" Height="72" />
+        <local:ImgBtn x:Name="btn14" Grid.Row="2" Grid.Column="1" Margin="5" Width="72" Height="72" />
+        <local:ImgBtn x:Name="btn15" Grid.Row="2" Grid.Column="0" Margin="5" Width="72" Height="72" />
     </Grid>
 </UserControl>

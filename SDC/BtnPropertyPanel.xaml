@@ -43,7 +43,7 @@
                         <MenuItem Header="SaveAs..." Name="saveAsPage" Click="saveAsPage_Click"/>
                         <MenuItem Header="Load..." Name="loadPage" Click="loadPage_Click"/>
                         <MenuItem Header="ClearAll" Name="clearPage" Click="clearPage_Click"/>
-                        <MenuItem Header="AutoStart" Name="autoStart" IsCheckable="True" Checked="autoStart_Checked" Unchecked="autoStart_Unchecked"/>
+                        <MenuItem Header="AutoStart" Name="autoStart" IsCheckable="True" Checked="autoStart_Checked" Unchecked="autoStart_Unchecked" />
                     </ContextMenu>
                 </Button.ContextMenu>
                 

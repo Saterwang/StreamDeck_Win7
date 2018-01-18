@@ -32,7 +32,6 @@ namespace SDC
         {
             // Set default combo box value
             FuncSelect.ItemsSource = Enum.GetValues(typeof(ButtonType)).Cast<ButtonType>();
-            //FuncSelect.SelectedIndex = 1;
             autoStart.IsChecked = AutoStartup.Check();
         }
 
@@ -79,7 +78,8 @@ namespace SDC
 
         private void savePage_Click(object sender, RoutedEventArgs e)
         {
-            Business.GetInstance().Save(System.Windows.Forms.Application.StartupPath + "\\Config.stm");
+            string s = System.Windows.Forms.Application.ExecutablePath.Substring(0, System.Windows.Forms.Application.ExecutablePath.LastIndexOf('\\')) + "\\Config.stm";
+            Business.GetInstance().Save(s);
         }
 
         private void loadPage_Click(object sender, RoutedEventArgs e)

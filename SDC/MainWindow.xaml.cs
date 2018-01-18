@@ -19,6 +19,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace SDC
 {
@@ -30,8 +31,8 @@ namespace SDC
         public MainWindow()
         {
             InitializeComponent();
-            PageTree.ItemsSource = CoreData.GetInstance().PageTree;
-            
+            Business.GetInstance().ButtonMatrixPanel = btnMartix;
+            Business.GetInstance().MainWindowPanel = this;
         }
 
         private static void ExpandAllItems(ItemsControl control)
@@ -121,9 +122,7 @@ namespace SDC
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-            Business.GetInstance().ButtonMatrixPanel = btnMartix;
-            Business.GetInstance().MainWindowPanel = this;
+            PageTree.ItemsSource = CoreData.GetInstance().PageTree;
 
             if (Business.GetInstance().Deck != null)
             {
@@ -132,16 +131,15 @@ namespace SDC
             }
 
             // Load default config
-            string filename = System.Windows.Forms.Application.StartupPath + "\\Config.stm";
-            if (File.Exists(filename))
+            string s = System.Windows.Forms.Application.ExecutablePath.Substring(0, System.Windows.Forms.Application.ExecutablePath.LastIndexOf('\\')) + "\\Config.stm";
+            if (File.Exists(s))
             {
                 try
                 {
-                    Business.GetInstance().Load(filename);
+                    Business.GetInstance().Load(s);
                 }
                 catch
                 { } 
-                
             }
 
             InitialTray(); //最小化至托盘
@@ -149,6 +147,8 @@ namespace SDC
             // Expend Tree Items
             ExpandAllItems(PageTree);
             TreeViewDefaultFocus(PageTree);
+
+            //throw new ArgumentNullException("这是故意抛出的异常");
         }
 
         private void PageTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -163,15 +163,16 @@ namespace SDC
         #region 最小化系统托盘
         private void InitialTray()
         {
+            string s = System.Windows.Forms.Application.ExecutablePath.Substring(0, System.Windows.Forms.Application.ExecutablePath.LastIndexOf('\\')) + "\\SysIcon.ico";
             //隐藏主窗体
             this.Visibility = Visibility.Hidden;
             //设置托盘的各个属性
  
-            _notifyIcon.BalloonTipText = "服务运行中...";//托盘气泡显示内容
-            _notifyIcon.Text = "ServerApp";
+            _notifyIcon.BalloonTipText = "StreamDeck Running...";//托盘气泡显示内容
+            _notifyIcon.Text = "StreamDeck";
             _notifyIcon.Visible = true;//托盘按钮是否可见
-            _notifyIcon.Icon = new Icon(@"SysIcon.ico");//托盘中显示的图标
-            _notifyIcon.ShowBalloonTip(2000);//托盘气泡显示时间
+            _notifyIcon.Icon = new Icon(s);//托盘中显示的图标
+            _notifyIcon.ShowBalloonTip(1000);//托盘气泡显示时间
             _notifyIcon.MouseClick += _notifyIcon_MouseClick;
             //窗体状态改变时触发
             this.StateChanged += MainWindow_StateChanged;

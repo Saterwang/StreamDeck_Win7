@@ -86,7 +86,7 @@ namespace SDC
             {
                  frame = BitmapFrame.Create(bitmap);
             }
-            catch(Exception ex)
+            catch
             {
 
             }

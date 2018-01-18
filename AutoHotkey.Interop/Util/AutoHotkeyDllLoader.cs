@@ -44,7 +44,11 @@ namespace AutoHotkey.Interop.Util
             if (resource != null) {
                 string tempFolderPath = GetTempFolderPath();
                 var output_file = Path.Combine(tempFolderPath, relativePath);
-                EmbededResourceHelper.ExtractToFile(assembly, resource, output_file);
+                if (!File.Exists(output_file))
+                {
+                    EmbededResourceHelper.ExtractToFile(assembly, resource, output_file);
+                }
+                //EmbededResourceHelper.ExtractToFile(assembly, resource, output_file);
                 return SafeLibraryHandle.LoadLibrary(output_file);
             }
 
