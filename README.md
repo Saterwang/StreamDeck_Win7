@@ -10,7 +10,7 @@ Trigger AHK command or script by StreamDeck Buttons, so you can send key combina
 
 Support multi button pages and page navigation
 
-Support button image and text (drop image file on button to add image)
+Support button image and text (drop image file to the button to add image)
 
 Support button drag and drop
 
