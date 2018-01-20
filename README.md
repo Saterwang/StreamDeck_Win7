@@ -19,4 +19,4 @@ Support config save and load
 Support auto start when windows login
 
 ## Releases
-Binary Release V2.1 [Download](https://github.com/Saterwang/StreamDeck_Win7/releases/tag/V2.1)
+Binary Release V2.2 [Download](https://github.com/Saterwang/StreamDeck_Win7/releases/tag/2.2)
