@@ -77,9 +77,16 @@ namespace SDC
     public class ButtonData: INotifyPropertyChanged
     {
         // Button Facade
+
+        /// <summary>
+        /// Dynamic image buffer for button press effect
+        /// </summary>
         public Bitmap ButtonBitmapBuf_UP { get; set; }
         public Bitmap ButtonBitmapBuf_DOWN { get; set; }
 
+        /// <summary>
+        /// Bitimage object for serialize
+        /// </summary>
         private SerializableBitmapImageWrapper m_Image;
         public BitmapImage Image
         {
@@ -95,6 +102,9 @@ namespace SDC
             }
         }
 
+        /// <summary>
+        /// NOT USED
+        /// </summary>
         public byte[] ImageBuffer { get; set; }
 
         private String m_FontFamilyStr;
@@ -127,7 +137,7 @@ namespace SDC
 
         private String m_FontColor;
 
-        [field: NonSerialized]
+        //[field:NonSerialized]
         public System.Windows.Media.Color FontColor
         {
             get
@@ -281,15 +291,20 @@ namespace SDC
             FuncType = ButtonType.Blank;
             ShowText = false;
             TextTopMargin = 0;
-            
-            ButtonBitmapBuf_UP = null;
-            ButtonBitmapBuf_DOWN = null;
-            ImageBuffer = null;
-            Image = null;
+
+            ClearImage();
 
             FontFamilyStr = "Arial";
             FontSize = 12;
             FontColor = System.Windows.Media.Color.FromRgb(255,255,255);
+        }
+
+        public void ClearImage()
+        {
+            ButtonBitmapBuf_UP = null;
+            ButtonBitmapBuf_DOWN = null;
+            ImageBuffer = null;
+            Image = null;
         }
 
     }

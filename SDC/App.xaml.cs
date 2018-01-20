@@ -16,7 +16,7 @@ namespace SDC
     {
         public App()
         {
-            string strEnableLog = ConfigurationSettings.AppSettings["EnableLog"].ToUpper();
+            string strEnableLog = System.Configuration.ConfigurationManager.AppSettings["EnableLog"].ToUpper();
             if (strEnableLog == "TRUE")
             {
                 string s = System.Windows.Forms.Application.ExecutablePath.Substring(0, System.Windows.Forms.Application.ExecutablePath.LastIndexOf('\\')) + "\\log4net.config";

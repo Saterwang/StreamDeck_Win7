@@ -58,6 +58,7 @@ namespace SDC
             }
         }
 
+        private DateTime lastKeyPress = DateTime.Now;
         private void Deck_KeyPressed(object sender, StreamDeckKeyEventArgs e)
         {
             var d = sender as IStreamDeck;
@@ -70,6 +71,12 @@ namespace SDC
 
             if (e.IsDown)
             {
+                if(DateTime.Now - lastKeyPress < TimeSpan.FromMilliseconds(250))
+                {
+                    return;
+                }
+
+                lastKeyPress = DateTime.Now;
                 // Key Down
                 MainWindowPanel.Dispatcher.Invoke(() => 
                 {
@@ -200,6 +207,11 @@ namespace SDC
             fs.Close();
         }
 
+        /// <summary>
+        /// Temp object for button copy and paste
+        /// </summary>
+        public ButtonData ButtonCopyBuffer;
+        
     }
 
     [Serializable]

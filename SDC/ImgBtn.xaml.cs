@@ -49,8 +49,6 @@ namespace SDC
         public int Index
         { get; set; }
 
-        private bool isClicking = false;
-
         public ImgBtn()
         {
             InitializeComponent();
@@ -96,7 +94,7 @@ namespace SDC
                     Stream sr = new FileStream(filepath, FileMode.Open, FileAccess.Read);
                     img.StreamSource = sr;
                 }
-                catch(Exception ex)
+                catch
                 {
 
                 }
@@ -108,7 +106,7 @@ namespace SDC
             }
 
             // ImgBtn Move or Exchange
-            if (e.Data.GetDataPresent(typeof(ImgBtn)))
+            if (e.Data.GetDataPresent(typeof(ImgBtn)) && (sender is Grid))
             {
                 ImgBtn dropSrc = e.Data.GetData(typeof(ImgBtn)) as ImgBtn;
 
@@ -127,28 +125,6 @@ namespace SDC
             
             }
                 // 快捷方式
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-    
-               
-        }
-
-        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            isClicking = true;
-        }
-
-        private void UserControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if(isClicking)
-            {
-                isClicking = false;
-
-            }
-
-            OnMyButtonClick(true, true);
         }
 
         public Bitmap GetRenderBitmap(bool isWithBorder = false)
@@ -216,11 +192,6 @@ namespace SDC
             Business.GetInstance().RefreshStreamDeckButton(Index);
         }
 
-        private void UserControl_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
             var dependencyObject = (ImgBtn)sender;
@@ -228,6 +199,53 @@ namespace SDC
             if (dependencyObject != null && dependencyObject.IsMouseOver && e.LeftButton == MouseButtonState.Pressed)
             {
                 DragDrop.DoDragDrop(dependencyObject, dependencyObject, DragDropEffects.Move);
+            }
+        }
+
+        private void btnCopy_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext != null && DataContext is ButtonData)
+            {
+                // Not Need Deep Copy
+                Business.GetInstance().ButtonCopyBuffer = DataContext as ButtonData;
+            }
+        }
+
+        private void btnPaste_Click(object sender, RoutedEventArgs e)
+        {
+            if(Business.GetInstance().ButtonCopyBuffer != null)
+            {
+                // Need Deep Copy
+                PageData currPage = Business.GetInstance().ButtonMatrixPanel.DataContext as PageData;
+                currPage.BtnList[Index] = (ButtonData)Util.DeepCopy<ButtonData>(Business.GetInstance().ButtonCopyBuffer);
+                Business.GetInstance().ButtonMatrixPanel.InitPanel();
+            }
+        }
+
+        private void btnCleanImage_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext != null && DataContext is ButtonData)
+            {
+                (DataContext as ButtonData).ClearImage();
+                Business.GetInstance().RefreshStreamDeckButton(this.Index);
+            }
+        }
+
+
+        private void UserControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            OnMyButtonClick(true, true);
+        }
+
+        private void imgBtnMenu_Opened(object sender, RoutedEventArgs e)
+        {
+            if (Business.GetInstance().ButtonCopyBuffer == null)
+            {
+                btnPaste.IsEnabled = false;
+            }
+            else
+            {
+                btnPaste.IsEnabled = true;
             }
         }
     }

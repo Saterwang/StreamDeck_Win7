@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SDC"
              mc:Ignorable="d" 
-             d:DesignHeight="72" d:DesignWidth="72" MaxHeight="72" MaxWidth="72" Loaded="UserControl_Loaded" PreviewMouseLeftButtonDown="UserControl_PreviewMouseLeftButtonDown" MouseMove="UserControl_MouseMove" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp" LayoutUpdated="UserControl_LayoutUpdated">
+             d:DesignHeight="72" d:DesignWidth="72" MaxHeight="72" MaxWidth="72" MouseLeftButtonUp="UserControl_MouseLeftButtonUp" MouseMove="UserControl_MouseMove" LayoutUpdated="UserControl_LayoutUpdated">
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
@@ -14,14 +14,15 @@
         <local:ColorToSolidColorBrushValueConverter x:Key="ColorConv" />
         <local:FontFamilyToStrConverter x:Key="FontConv" />
     </UserControl.Resources>
+
+    <UserControl.ContextMenu>
+        <ContextMenu x:Name="imgBtnMenu" Opened="imgBtnMenu_Opened">
+            <MenuItem x:Name="btnCopy" Header="Copy" Click="btnCopy_Click" />
+            <MenuItem x:Name="btnPaste" Header="Paste" Click="btnPaste_Click" IsEnabled="False" />
+            <MenuItem x:Name="btnCleanImage" Header="DeleteImage" Click="btnCleanImage_Click" />
+        </ContextMenu>
+    </UserControl.ContextMenu>
     <Grid x:Name="OuterGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-
-        <Border x:Name="brdSelect" BorderThickness="3" BorderBrush="Aqua" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="12" Visibility="Hidden"  >
-            <Border.Effect>
-                <DropShadowEffect  ShadowDepth="0" Color="Aqua" Opacity="10" BlurRadius="15" />
-            </Border.Effect>
-        </Border>
-
         <Border x:Name="CoreBorder" BorderThickness="1" BorderBrush="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="12" ClipToBounds="True" >
 
             <Grid x:Name="CoreGrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AllowDrop="True" Drop="ImageBlock_Drop" Background="Transparent">
@@ -52,6 +53,10 @@
             </Grid>
 
         </Border>
-
+        <Border x:Name="brdSelect" BorderThickness="3" BorderBrush="Aqua" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="12" Visibility="Hidden"  >
+            <Border.Effect>
+                <DropShadowEffect  ShadowDepth="0" Color="Aqua" Opacity="10" BlurRadius="15" />
+            </Border.Effect>
+        </Border>
     </Grid>
 </UserControl>
