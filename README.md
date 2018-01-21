@@ -20,3 +20,7 @@ Support auto start when windows login
 
 ## Releases
 Binary Release V2.2 [Download](https://github.com/Saterwang/StreamDeck_Win7/releases/tag/2.2)
+
+## Screen Snap
+![ScreenSnap](doc/snap1.png?raw=true "Demo")
+
